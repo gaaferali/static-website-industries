@@ -1,30 +1,49 @@
-import React, { useState } from 'react';
-import { COMPANY_INFO, ALL_SERVICES } from '../data/servicesData';
+import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from 'react';
+import { COMPANY_INFO, ALL_SERVICES } from '../../data/services';
+import './ContactForm.css';
 
 interface ContactFormProps {
   dark?: boolean;
 }
 
+const initialForm = {
+  name: '',
+  email: '',
+  phone: '',
+  service: 'precision-manufacturing',
+  subject: '',
+  message: '',
+};
+
+function createInquiryReference() {
+  return `IRN-${Math.floor(100000 + Math.random() * 900000)}`;
+}
+
 export default function ContactForm({ dark = false }: ContactFormProps) {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: 'precision-manufacturing', subject: '', message: '' });
+  const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState('');
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(p => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 800);
+    setTimeout(() => {
+      setLoading(false);
+      setReferenceNumber(createInquiryReference());
+      setSubmitted(true);
+    }, 800);
   };
 
-  const inp: React.CSSProperties = dark
+  const inp: CSSProperties = dark
     ? { background: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.15)', color: '#FFFFFF' }
     : { background: '#FFFFFF', borderColor: '#DDE4EA', color: '#061A2E' };
     
-  const lbl: React.CSSProperties = dark ? { color: '#E8EDF1' } : { color: '#061A2E' };
+  const lbl: CSSProperties = dark ? { color: '#E8EDF1' } : { color: '#061A2E' };
 
   return (
     <div style={{
@@ -53,9 +72,9 @@ export default function ContactForm({ dark = false }: ContactFormProps) {
               Thank you <strong style={{ color: dark ? '#FFFFFF' : '#061A2E' }}>{form.name || 'Valued Client'}</strong>. We'll be in touch within 24 hours.
             </p>
             <p style={{ fontFamily: 'monospace', fontSize: '0.82rem', color: '#D98B32' }}>
-              Ref: #IRN-{Math.floor(100000 + Math.random() * 900000)}
+              Ref: #{referenceNumber}
             </p>
-            <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: 'precision-manufacturing', subject: '', message: '' }); }}
+            <button onClick={() => { setSubmitted(false); setForm(initialForm); }}
               style={{ marginTop: '1.25rem', background: 'none', border: 'none', color: '#D98B32', fontFamily: 'var(--font-heading)', fontWeight: 700, cursor: 'pointer', fontSize: '0.88rem' }}>
               Submit Another Inquiry →
             </button>
@@ -120,8 +139,6 @@ export default function ContactForm({ dark = false }: ContactFormProps) {
           </div>
         ))}
       </div>
-
-      <style>{`@media(max-width:768px){.contact-form-grid{grid-template-columns:1fr!important}}`}</style>
     </div>
   );
 }

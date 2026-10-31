@@ -1,0 +1,145 @@
+.site-footer {
+  padding: 4rem 0 2rem;
+  color: var(--text-white-dim);
+  background: var(--navy);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.footer-brand-icon {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--blue);
+}
+
+.footer-brand-name,
+.footer-brand-subtitle {
+  font-family: var(--font-heading);
+}
+
+.footer-brand-name {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.footer-brand-subtitle {
+  color: var(--blue);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.footer-summary {
+  margin-bottom: 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.footer-social-links,
+.footer-legal-links {
+  display: flex;
+}
+
+.footer-social-links {
+  gap: 0.6rem;
+}
+
+.footer-social-link {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: #fff;
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.footer-heading {
+  display: inline-block;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  color: #fff;
+  border-bottom: 2px solid var(--blue);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.footer-list,
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.footer-list {
+  gap: 0.65rem;
+}
+
+.footer-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--blue);
+}
+
+.footer-contact-list {
+  gap: 0.85rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  font-size: 0.83rem;
+}
+
+.footer-legal-links {
+  gap: 1.25rem;
+}

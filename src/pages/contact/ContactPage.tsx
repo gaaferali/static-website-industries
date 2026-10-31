@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import ContactForm from '../components/ContactForm';
+import ContactForm from '../../components/forms/ContactForm';
+import './ContactPage.css';
 
 export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -76,59 +77,6 @@ export default function ContactPage() {
           ))}
         </div>
       </section>
-
-      <style>{`
-        .mb-4 { margin-bottom: 1.5rem; }
-
-        .faq-list {
-          max-width: 840px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .faq-item {
-          background: #E8EDF1;
-          border: 1px solid #DDE4EA;
-          border-radius: 10px;
-          padding: 1.25rem 1.5rem;
-          cursor: pointer;
-          transition: var(--transition);
-        }
-
-        .faq-item:hover {
-          border-color: #D98B32;
-        }
-
-        .faq-question {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .faq-question h3 {
-          font-size: 1.05rem;
-          color: #061A2E;
-          font-weight: 800;
-        }
-
-        .faq-toggle {
-          font-size: 1.4rem;
-          color: #D98B32;
-          font-weight: 900;
-        }
-
-        .faq-answer {
-          margin-top: 0.85rem;
-          padding-top: 0.85rem;
-          border-top: 1px solid #DDE4EA;
-          font-size: 0.92rem;
-          color: #3A4B5A;
-          line-height: 1.6;
-        }
-      `}</style>
     </div>
   );
 }
