@@ -1,0 +1,598 @@
+/* ─────────────────────────────────────────────
+   IronCore Industries — Updated Design System
+   Strict Palette:
+   - Dark Navy:  #061A2E
+   - Steel Gray: #607080
+   - Light Gray: #E8EDF1
+   - White:      #FFFFFF
+   - Industrial Accent: #D98B32
+───────────────────────────────────────────── */
+
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Strict User Palette */
+  --dark-navy: #061A2E;
+  --navy-dark: #061A2E;
+  --steel-gray: #607080;
+  --light-gray: #E8EDF1;
+  --white: #FFFFFF;
+  --accent-amber: #D98B32;
+  --accent-copper: #D98B32;
+
+  /* Alias mappings */
+  --navy: #061A2E;
+  --navy-2: #0B253E;
+  --navy-3: #10304F;
+  --blue: #D98B32;
+  --blue-hover: #C27825;
+  --blue-light: #FBF4EC;
+
+  /* Typography */
+  --text-dark: #061A2E;
+  --text-body: #3A4B5A;
+  --text-muted: #607080;
+  --text-white: #FFFFFF;
+
+  /* Borders & Shadows */
+  --border: #DDE4EA;
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --shadow-sm: 0 4px 12px rgba(6, 26, 46, 0.06);
+  --shadow-md: 0 10px 30px rgba(6, 26, 46, 0.12);
+  --shadow-lg: 0 20px 50px rgba(6, 26, 46, 0.2);
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-hero: 0 0 50px 50px; /* Rounded bottom corners matching Desktop-1 */
+  --radius-pill: 9999px;
+
+  --transition: all 0.25s ease;
+  /* site horizontal gutter used for consistent offsets */
+  --site-gutter: 1.5rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--light-gray);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background: var(--light-gray);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Full Width Outer Wrapper (Reaches Left & Right Browser Corners) ── */
+.app-container-wrapper {
+  width: 100%;
+  margin: 0;
+  /* Add horizontal gutters so content doesn't touch browser edges */
+  padding: 0 var(--site-gutter) 3rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-py {
+  padding: 3.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-py {
+    padding: 2.25rem 0;
+  }
+}
+
+/* ── Hero Banner: Reaches 100% Left & Right Browser Corners ── */
+.page-hero-banner {
+  position: relative;
+  /* make banner visually full-bleed beyond the page wrapper */
+  width: calc(100% + (2 * var(--site-gutter)));
+  min-height: 380px;
+  border-radius: 0 0 50px 50px;
+  overflow: hidden;
+  background: var(--dark-navy);
+  display: flex;
+  align-items: flex-end;
+  padding: 7rem 4rem 3.5rem 4rem;
+  /* allow hero to reach full viewport edges even when inside a page wrapper */
+  margin-left: calc(-1 * var(--site-gutter));
+  margin-right: calc(-1 * var(--site-gutter));
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-hero-banner {
+    padding: 6rem 1.5rem 2.5rem 1.5rem;
+    min-height: 320px;
+    border-radius: 0 0 32px 32px;
+  }
+}
+
+/* Image Clearly Visible on Right Side */
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  /* show full image color on the right side */
+  opacity: 1;
+  filter: brightness(0.98) contrast(1.05);
+}
+
+/* Linear Overlay Gradient: Darker on Left for Text, Clearer on Right for Image */
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* darker left for text, fully transparent on the right so image colors show */
+  background: linear-gradient(90deg, 
+    #061A2E 0%, 
+    rgba(6, 26, 46, 0.9) 45%, 
+    rgba(6, 26, 46, 0.15) 70%, 
+    rgba(6, 26, 46, 0) 100%
+  );
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(217, 139, 50, 0.2);
+  border: 1px solid var(--accent-amber);
+  color: var(--accent-amber);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.page-hero-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.85rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.page-hero-sub {
+  font-size: 0.98rem;
+  color: var(--light-gray);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+/* ── Typography & Standard Font Sizes ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* Stronger, more consistent section and card typography */
+.section-title-dark, .section-title-light {
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.card-title-dark, .ai-card-title, .page-hero-title, .hero-title {
+  font-weight: 900;
+}
+
+.card-desc-muted, .ai-card-desc, .about-card-caption, .detail-paragraph, .detail-paragraph-sub {
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+/* Make paragraph text inside full-bleed white cards feel authoritative but readable */
+.floating-section-card .card-body-content p,
+.floating-section-card .about-card-caption,
+.floating-section-card .detail-paragraph {
+  font-weight: 700;
+}
+
+/* Slightly increase prominence of calls-to-action */
+.btn, .btn-primary, .btn-navy, .btn-outline {
+  font-weight: 800;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent-amber);
+  color: var(--white);
+  border-color: var(--accent-amber);
+}
+
+.btn-primary:hover {
+  background: #C27825;
+  border-color: #C27825;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(217, 139, 50, 0.3);
+}
+
+.btn-navy {
+  background: var(--dark-navy);
+  color: var(--white);
+  border-color: var(--dark-navy);
+}
+
+.btn-navy:hover {
+  background: #0B253E;
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent-amber);
+  border-color: var(--accent-amber);
+}
+
+.btn-outline:hover {
+  background: var(--accent-amber);
+  color: var(--white);
+}
+
+/* ── Forms ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--dark-navy);
+  font-size: 0.92rem;
+  transition: var(--transition);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 0 3px rgba(217, 139, 50, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+/* ── Full Width Edge-to-Edge White Sections ── */
+.floating-section-card {
+  width: calc(100% + (2 * var(--site-gutter)));
+  max-width: none;
+  margin: 0 0 2.5rem 0;
+  background: var(--white);
+  border-radius: 0;
+  border-top: 1px solid #DDE4EA;
+  border-bottom: 1px solid #DDE4EA;
+  border-left: none;
+  border-right: none;
+  /* make the white card reach the browser edges */
+  padding: 0;
+  /* offset the page wrapper gutter so the white card appears full-bleed */
+  margin-left: calc(-1 * var(--site-gutter));
+  margin-right: calc(-1 * var(--site-gutter));
+  box-shadow: var(--shadow-sm);
+}
+
+.floating-section-card-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  /* add internal horizontal gutters so text and images don't touch the card edge */
+  padding: 3.5rem 2.5rem;
+  box-sizing: border-box;
+}
+
+/* Support pages that omit the .floating-section-card-inner wrapper:
+   give any direct child a centered max-width and inner gutters so
+   content doesn't sit flush with the white card edges. */
+.floating-section-card > :not(.floating-section-card-inner) {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .floating-section-card {
+    padding: 2.25rem 0;
+  }
+  .floating-section-card-inner {
+    padding: 0 1rem;
+  }
+
+  .floating-section-card > :not(.floating-section-card-inner) {
+    padding: 0 1rem;
+  }
+}
+
+/* ── Floating Dark Cards (Remains Boxed as requested) ── */
+.floating-dark-card {
+  max-width: 1180px;
+  margin: 0 auto 2.5rem auto;
+  background: var(--dark-navy);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.75rem 2.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .floating-dark-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 18px;
+    margin: 0 0.75rem 1.75rem 0.75rem;
+  }
+}
+
+.w-full { width: 100%; }
+.text-center { text-align: center; }
+
+
+/* ================================================================
+   IronCore UI/UX refinement — style-only layer
+   Keeps the core dark navy identity and existing component behavior.
+   ================================================================ */
+:root {
+  --accent-amber: #c98232;
+  --accent-copper: #c98232;
+  --blue: #c98232;
+  --blue-hover: #aa6827;
+  --blue-light: #fff7ed;
+  --accent-orange: #c98232;
+  --radius-full: 9999px;
+  --transition-fast: 180ms ease;
+  --transition-normal: 240ms ease;
+  --text-white-dim: rgba(255,255,255,.72);
+  --surface-soft: #f3f6f8;
+  --surface-tint: #eef2f5;
+  --text-body: #344554;
+  --text-muted: #607080;
+}
+
+html { scroll-padding-top: 5.5rem; }
+body { line-height: 1.65; background: #eef2f5; }
+button, input, select, textarea { font-family: var(--font-body); }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(201,130,50,.55); outline-offset: 3px; }
+
+/* The existing floating navigation keeps its behavior, but reads as a calmer control bar. */
+.floating-header { top: 1rem !important; }
+.header-scrolled { top: .65rem !important; }
+.navbar-pill {
+  max-width: 1220px !important;
+  min-height: 66px;
+  padding: .55rem 1.15rem !important;
+  border-radius: 18px !important;
+  background: rgba(255,255,255,.98) !important;
+  border: 1px solid rgba(6,26,46,.09) !important;
+  box-shadow: 0 12px 30px rgba(6,26,46,.14) !important;
+}
+.brand-icon-box { border-radius: 12px !important; background: var(--dark-navy) !important; }
+.brand-text { color: var(--dark-navy) !important; letter-spacing: .02em !important; }
+.nav-menu { gap: .55rem !important; }
+.nav-link {
+  min-height: 40px;
+  padding: .55rem .7rem !important;
+  border-radius: 10px;
+  color: #344554 !important;
+  font-size: .78rem !important;
+  letter-spacing: .06em !important;
+}
+.nav-link::after { display: none !important; }
+.nav-link:hover { color: var(--accent-amber) !important; background: rgba(201,130,50,.09); transform: none !important; }
+.nav-link.active { color: var(--accent-amber) !important; background: rgba(201,130,50,.1); }
+.dropdown-menu {
+  top: calc(100% + .8rem) !important;
+  width: 330px !important;
+  padding: .7rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(6,26,46,.1) !important;
+  box-shadow: 0 20px 45px rgba(6,26,46,.18) !important;
+}
+.dropdown-item { padding: .8rem .75rem !important; border-radius: 10px !important; }
+.dropdown-item:hover { background: #fff7ed !important; }
+.dropdown-header { color: var(--accent-amber) !important; padding: .45rem .7rem .6rem !important; font-size: .68rem !important; letter-spacing: .12em !important; }
+.dropdown-footer-link { border-top: 1px solid #e5eaee !important; margin-top: .25rem !important; padding: .75rem .7rem .35rem !important; color: var(--dark-navy) !important; }
+.figma-search-pill { min-height: 38px; border-radius: 12px !important; background: var(--dark-navy) !important; }
+.figma-search-input { color: #fff !important; }
+.hamburger-btn { border-radius: 10px !important; border: 1px solid rgba(6,26,46,.12) !important; }
+
+/* Preserve the image-led hero while improving rhythm and copy contrast. */
+.page-hero-banner {
+  min-height: 410px !important;
+  padding: 7.25rem 3.5rem 3.75rem !important;
+  border-radius: 0 0 44px 44px !important;
+  box-shadow: 0 16px 34px rgba(6,26,46,.13) !important;
+}
+.page-hero-overlay { background: linear-gradient(90deg, rgba(6,26,46,.98) 0%, rgba(6,26,46,.88) 42%, rgba(6,26,46,.34) 74%, rgba(6,26,46,.08) 100%) !important; }
+.page-hero-title { max-width: 760px; font-size: clamp(2.25rem, 5vw, 4rem) !important; line-height: 1.05 !important; letter-spacing: -.045em !important; }
+.page-hero-sub { max-width: 600px; color: #f2f5f7 !important; font-size: 1.03rem !important; }
+.hero-tag-chip, .hero-tag { color: #f5c27e !important; background: rgba(201,130,50,.16) !important; border-color: rgba(201,130,50,.72) !important; }
+.company-logo-badge { border-radius: 14px !important; background: rgba(6,26,46,.92) !important; border-color: var(--accent-amber) !important; }
+
+/* Use softer surfaces and consistent visual grouping while retaining the same sections. */
+.app-container-wrapper { padding: 0 var(--site-gutter) 4rem !important; }
+.floating-section-card {
+  margin-bottom: 2rem !important;
+  border: 1px solid #dce4ea !important;
+  border-radius: 22px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(6,26,46,.055) !important;
+}
+.floating-section-card-inner { padding: 3.25rem 2.75rem !important; }
+.floating-dark-card {
+  margin-bottom: 2rem !important;
+  border-radius: 22px !important;
+  background: var(--dark-navy) !important;
+  padding: 2.75rem !important;
+  box-shadow: 0 14px 34px rgba(6,26,46,.18) !important;
+}
+.section-header-flex { margin-bottom: 1.6rem !important; align-items: center !important; }
+.section-tag-amber, .about-label-tag { color: var(--accent-amber) !important; letter-spacing: .14em !important; }
+.section-title-dark, .section-title-light { line-height: 1.12 !important; letter-spacing: -.025em; }
+
+/* Improve the light content cards without changing what they do. */
+.about-left-card, .focus-card, .industrial-service-card {
+  background: #f8fafb !important;
+  border-color: #dce4ea !important;
+  border-radius: 16px !important;
+}
+.about-left-card { padding: 1.35rem !important; }
+.about-img-frame { height: 255px !important; border-radius: 12px !important; }
+.focus-card { border-left: 4px solid var(--accent-amber) !important; padding: 1.45rem !important; }
+.about-main-headline { line-height: 1.38 !important; }
+.about-card-caption, .card-mini-desc, .card-desc-muted { color: #405464 !important; font-weight: 600 !important; }
+.card-mini-title, .card-title-dark { line-height: 1.22 !important; }
+.card-thumb-wrapper { height: 175px !important; }
+.card-badge-pill, .ai-card-badge {
+  background: rgba(6,26,46,.92) !important;
+  color: #f5c27e !important;
+  border-radius: 999px !important;
+  padding: .35rem .7rem !important;
+}
+.industrial-service-card:hover { transform: translateY(-6px) !important; border-color: var(--accent-amber) !important; box-shadow: 0 16px 30px rgba(6,26,46,.12) !important; }
+.card-link-btn, .ai-card-link, .card-sub-amber, .ai-card-sub { color: var(--accent-amber) !important; }
+
+/* Dark sections: keep navy main color, use a restrained secondary steel-blue surface. */
+.ai-service-card, .sector-item, .cta-inquiry-box {
+  background: #0b2943 !important;
+  border-radius: 16px !important;
+}
+.ai-service-card { border-top: 3px solid var(--accent-amber) !important; padding: 1.45rem !important; }
+.ai-service-card:hover { border-color: var(--accent-amber) !important; box-shadow: 0 16px 34px rgba(0,0,0,.28) !important; }
+.ai-card-desc, .highlight-secondary, .sectors-lead-text, .inquiry-sub { color: #c7d2da !important; }
+.ai-tech-highlight-box { background: rgba(6,26,46,.62) !important; border-color: rgba(201,130,50,.4) !important; }
+.sector-item { border-left-color: var(--accent-amber) !important; }
+
+/* Forms and FAQ: clearer labels, larger targets, and consistent corners. */
+.contact-form-grid { gap: 1.15rem !important; }
+.form-group { gap: .5rem !important; margin-bottom: 1.15rem !important; }
+.form-label { color: var(--dark-navy) !important; font-size: .82rem !important; letter-spacing: .01em; }
+.form-input, .form-textarea, .form-select { min-height: 46px; border-radius: 10px !important; border-color: #cfd9e1 !important; color: var(--dark-navy) !important; }
+.form-input::placeholder, .form-textarea::placeholder { color: #81909c !important; opacity: 1; }
+.btn { min-height: 44px; border-radius: 10px !important; }
+.btn-primary { background: var(--accent-amber) !important; border-color: var(--accent-amber) !important; color: #fff !important; }
+.btn-primary:hover { background: var(--blue-hover) !important; border-color: var(--blue-hover) !important; }
+.btn-outline { color: var(--accent-amber) !important; border-color: var(--accent-amber) !important; }
+.btn-outline:hover { background: var(--accent-amber) !important; color: #fff !important; }
+.faq-list { max-width: 920px !important; gap: .75rem !important; }
+.faq-item { background: #f8fafb !important; border-radius: 14px !important; border-color: #dce4ea !important; padding: 1.15rem 1.35rem !important; }
+.faq-item:hover, .faq-item.faq-open { border-color: var(--accent-amber) !important; box-shadow: 0 8px 20px rgba(6,26,46,.06); }
+.faq-question h3 { line-height: 1.35 !important; }
+.faq-answer { color: #405464 !important; }
+.faq-toggle { color: var(--accent-amber) !important; }
+
+/* Footer readability and spacing; inline declarations are intentionally overridden only visually. */
+footer { background: var(--dark-navy) !important; }
+footer a:hover { color: #f5c27e !important; }
+
+@media (max-width: 992px) {
+  .navbar-pill { padding-inline: .8rem !important; }
+  .nav-menu { gap: .25rem !important; }
+  .nav-link { padding-inline: .55rem !important; }
+  .page-hero-banner { padding-inline: 2.5rem !important; }
+}
+
+@media (max-width: 768px) {
+  .app-container-wrapper { padding-inline: .75rem !important; }
+  .floating-header { top: .65rem !important; }
+  .navbar-pill { border-radius: 15px !important; }
+  .page-hero-banner { min-height: 330px !important; padding: 6.5rem 1.5rem 2.75rem !important; border-radius: 0 0 30px 30px !important; }
+  .page-hero-title { font-size: clamp(2rem, 10vw, 3rem) !important; }
+  .floating-section-card { border-radius: 18px !important; }
+  .floating-section-card-inner { padding: 2.3rem 1.15rem !important; }
+  .floating-dark-card { border-radius: 18px !important; padding: 1.5rem 1.15rem !important; }
+  .section-header-flex { align-items: flex-start !important; }
+}
+
+@media (max-width: 600px) {
+  .page-hero-banner { padding-top: 6rem !important; }
+  .figma-hero-brand-block { gap: 1rem !important; }
+  .company-logo-badge { padding: .65rem .9rem !important; }
+  .figma-brand-heading { font-size: 2.35rem !important; }
+  .section-title-dark, .section-title-light { font-size: 1.55rem !important; }
+  .card-thumb-wrapper { height: 195px !important; }
+}
